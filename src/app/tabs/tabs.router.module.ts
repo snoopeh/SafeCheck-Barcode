@@ -52,10 +52,18 @@ const routes: Routes = [
           }
         ]
       },
-      
-      
+      {
+        path: 'barcode',
+          children: [
+            {
+              path: '',
+              loadChildren: '../barcode/barcode.module#BarcodePageModule'
+            }
+          ]
+        }
     ]
   },
+  
   {
     path: '',
     redirectTo: '/tabs/search',
