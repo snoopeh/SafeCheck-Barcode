@@ -1,0 +1,88 @@
+<ion-header>
+  <ion-toolbar>
+
+    <ion-buttons routerLink="/login" slot="start">
+      <ion-tab-button expand="block" routerLink="/" routerDirection="login">
+        <ion-icon size="large" name="ios-arrow-round-back"></ion-icon>
+
+      </ion-tab-button>
+    </ion-buttons>
+    <div>
+      <ion-title>
+        <div style="margin-left:2em;"> <img style="width: 110px;" src="../../assets/title.png"></div>
+      </ion-title>
+    </div>
+  </ion-toolbar>
+</ion-header>
+<ion-content class=" background">
+  <ion-card style="background-color: white;" class="welcome-card">
+    <ion-list>
+      <ion-item>
+        <ion-label fixed>Barcode:</ion-label>
+        <ion-input type="text" value="" [(ngModel)]="barcodeData"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-button (click)="scanCode()" color="success">Scan</ion-button>
+      </ion-item>
+
+    </ion-list>
+    <ion-list *ngIf="products != undefined">
+      <ion-item ion-item *ngFor="let item of products">
+        <a href="/tabs/detail/{{item._id}}/1">
+          <ion-thumbnail *ngIf="item.productImage != undefined" item-start>
+            <img src="{{imageUrl}}/{{item.productImage}}">
+          </ion-thumbnail>
+        </a>
+        <a href="/tabs/detail/{{item._id}}/1">
+          <ion-thumbnail *ngIf="item.productImage == undefined" item-start>
+            <img src="../assets/imgnotav.png">
+          </ion-thumbnail>
+        </a>
+        <ion-label class="ion-margin">
+
+          <a class="alink" href="/tabs/detail/{{item._id}}/1">
+            <ion-text>
+              {{item.name}}
+            </ion-text>
+          </a>
+
+          <p>{{item.brand}}</p>
+          <ion-icon class="pointer" slot="icon-only" (click)="likeProduct(item._id)" size="large" color="success"
+            name="arrow-dropup">
+          </ion-icon>
+
+          <ion-text class="pformat" style="margin-left:3px;">{{item.like.length}} </ion-text>
+          <ion-icon class="pointer" slot="icon-only" size="large" (click)="dislikeProduct(item._id)" color="medium"
+            name="arrow-dropdown"></ion-icon>
+          <ion-text class="pformat" style=" margin-left:3px;">{{item.dislike.length}} </ion-text>
+          <br />
+
+        </ion-label>
+
+        <div class="ion-text-center" *ngIf="item.isVegan && item.isVeganVerify">
+          <img class="sizeImg" src="../assets/Vegan(2).png">
+          <p class="pformat" style="margin-top:-8px;">Vegan</p>
+        </div>
+        <div class="ion-text-center"
+          *ngIf="item.isCrueltFree && item.isCrueltFreeVerify && !item.isVegan && item.isVeganVerify">
+          <img class="sizeImg" src="../assets/CF.png">
+          <p class="pformat" style="margin-top: -8px;">CrueltyFree</p>
+        </div>
+      </ion-item>
+    </ion-list>
+
+  </ion-card>
+
+<ion-card-content routerLink="/tabs/new-product" routerDirection="new-product"
+  style="background-color: white; color: black;"
+  *ngIf="products == undefined && searched == true">
+
+  <div style="width:90%;  font-style: italic;">
+    Ops! o produto nao foi encontrado, mas não se preocupe Guardamos a busca feita e em breve estaremos adicionando na
+    nossa base de dados.
+    Caso queira agilizar esse processo para cadastra-lo clique aqui.
+  </div>
+
+</ion-card-content>
+</ion-content>
