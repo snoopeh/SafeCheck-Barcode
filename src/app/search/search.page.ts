@@ -31,8 +31,10 @@ export class SearchPage implements OnInit {
   imageUrl: string = API_CONFIG.baseUrl;
   id;
   products: ProductDTO[];
+  emptyProducts: ProductDTO[];
   usr : any;
   brands: BrandDTO[];
+  emptyBrands: BrandDTO[];
   search: any;
   public comment: Comments = {};
   private Succes: Boolean;
@@ -156,6 +158,33 @@ export class SearchPage implements OnInit {
     const toast = await this.toastCtrl.create({ message, duration: 2000 });
     toast.present();
   }
+
+  async segmentChanged(event){ 
+    this.products = this.emptyProducts;
+    this.brands = this.emptyBrands;
+    var val = event.target.value;
+    if(val == 'Products'){
+      await this.productService.findAll()
+        .subscribe(response => {
+          this.products = response;
+          return true;
+        },
+          error => {
+            this.products = null;
+          });
+    }
+    if(val == 'Brands'){
+      await this.brandService.findAll()
+      .subscribe(response => {
+        this.brands = response;
+      },
+        error => {
+          this.brands = null;
+        });
+     this.searched =true;
+    }
+  }
+
   ngOnInit() {
     this.usr = this.storage.getLocalUser();
   }

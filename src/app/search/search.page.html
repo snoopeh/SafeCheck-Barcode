@@ -9,6 +9,16 @@
 <ion-content  class=" swiper-no-swiping background">
   
     <ion-searchbar  color="light" placeholder="Buscar" (ionInput)="searchItens($event)"></ion-searchbar>
+    <ion-toolbar>
+      <ion-segment color="success" (ionChange)="segmentChanged($event)">
+        <ion-segment-button value="Products">
+          <ion-label>Lista de Produtos</ion-label>
+        </ion-segment-button>
+        <ion-segment-button color="success" value="Brands">
+          <ion-label>Lista de Empresas</ion-label>
+        </ion-segment-button>
+      </ion-segment>
+    </ion-toolbar>
   <ion-list *ngIf="products != undefined || brands != undefined">
     <ion-item  ion-item *ngFor="let item of products">
       <a href="/tabs/detail/{{item._id}}/1">
