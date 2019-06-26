@@ -1,3 +1,5 @@
+import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
+import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
@@ -39,6 +41,8 @@ import { Deeplinks } from '@ionic-native/deeplinks/ngx';
     File,    
     Deeplinks,
     Camera,
+    BarcodeScanner,
+    AndroidPermissions
   ],
   bootstrap: [AppComponent]
 })

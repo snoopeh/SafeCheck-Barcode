@@ -1,3 +1,3 @@
 export const API_CONFIG = {
-    baseUrl:"http://safecheck-api.herokuapp.com"
+    baseUrl:"https://safecheck-api.herokuapp.com"
 }

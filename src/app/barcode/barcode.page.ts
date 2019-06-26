@@ -67,7 +67,8 @@ async mockCode(){
       err => this.androidPermissions.requestPermission(this.androidPermissions.PERMISSION.CAMERA)
     );
     this.barcodeScanner.scan().then(barcodeData => {
-      this.barcodeData = barcodeData;
+      this.presentToast("Leitura do Código Completa");
+      this.barcodeData = barcodeData.text;
       this.requestProduct();
      }).catch(err => {
          console.log('Error', err);
@@ -98,7 +99,7 @@ async mockCode(){
       this.presentToast(error.error.error);
     } finally {
       if (this.Succes) {
-        this.searchItens(this.search);
+        //this.searchItens(this.search);
         this.presentToast("Você curtiu isso");
         this.comment.description = null;
       }
@@ -119,7 +120,7 @@ async mockCode(){
       this.presentToast(error.error.error);
     } finally {
       if (this.Succes) {
-        this.searchItens(this.search);
+        //this.searchItens(this.search);
         this.comment.description = null;
       }
       this.loading.dismiss();
