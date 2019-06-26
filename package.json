@@ -20,6 +20,7 @@
     "@angular/platform-browser": "^7.2.2",
     "@angular/platform-browser-dynamic": "^7.2.2",
     "@angular/router": "^7.2.2",
+    "@ionic-native/barcode-scanner": "^5.8.0",
     "@ionic-native/camera": "^5.8.0",
     "@ionic-native/core": "^5.8.0",
     "@ionic-native/deeplinks": "^5.8.0",
@@ -39,6 +40,7 @@
     "ionic-native": "^2.9.0",
     "ionic-plugin-deeplinks": "^1.0.20",
     "node-properties-parser": "0.0.2",
+    "phonegap-plugin-barcodescanner": "^8.1.0",
     "rxjs": "~6.5.1",
     "tslib": "^1.9.0",
     "zone.js": "~0.8.29"
@@ -90,7 +92,8 @@
         "URL_SCHEME": "http://safecheck-api",
         "DEEPLINK_SCHEME": "https",
         "DEEPLINK_HOST": "safecheck-api"
-      }
+      },
+      "phonegap-plugin-barcodescanner": {}
     },
     "platforms": [
       "android"
