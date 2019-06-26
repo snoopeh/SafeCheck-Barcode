@@ -1,0 +1,87 @@
+
+
+<ion-content class=" swiper-no-swiping background">
+  <div class="container top" [hidden]="keyboard.isVisible">
+    <div  style="text-align: center;" > <img style="width: 80px; margin-left:px;" src="/assets/Vegan(2).png"></div> 
+
+    <div class="bgclear">
+    <ion-segment (ionChange)="segmentChanged($event)" color="success" mode="ios" value="login">
+      <ion-segment-button  mode="ios" value="login">
+        <ion-label><b>Login</b></ion-label>
+      </ion-segment-button>
+      <ion-segment-button mode="ios" value="register">
+        <ion-label><b>Cadastro</b></ion-label>
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+  </div>
+
+  <ion-slides>
+    <ion-slide>
+      <div class="slide-inner ion-padding">
+        <span><b>Login</b></span>
+
+        <form [formGroup]="fGroupLogin">
+        
+          <ion-item class="ion-margin-top" lines="none">
+            <ion-input type="email" placeholder="E-mail"  formControlName="email"></ion-input>
+          </ion-item>
+          <div  *ngIf="fGroupLogin.controls.email.errors">
+            <small style="color:gray" *ngIf="fGroupLogin.controls.email.errors.required && !fGroupLogin.controls.email.pristine">E-mail é obrigatório!</small>
+            <small style="color:gray" *ngIf="fGroupLogin.controls.email.errors.pattern && !fGroupLogin.controls.email.pristine">E-mail ínvalido!</small>
+          </div>
+
+
+        <ion-item class="ion-margin-top" lines="none">
+            <ion-input type="password" placeholder="Senha"  formControlName="password"> </ion-input>
+          </ion-item>
+          <div  *ngIf="fGroupLogin.controls.password.errors">
+            <small style="color:gray" *ngIf="fGroupLogin.controls.password.errors.required  && !fGroupLogin.controls.password.pristine ">Senha é obrigatório!</small>
+            <small style="color:gray" *ngIf="fGroupLogin.controls.password.errors.minlength && !fGroupLogin.controls.password.pristine">Senha deve ter no mínimo 4 caracteres!</small>
+          </div>
+
+        <ion-button class="ion-margin-top" (click)="login()" [disabled]="!fGroupLogin.valid" color="success" expand="block">
+          Entrar
+        </ion-button>
+        <span  ><a class="alink"  href="/forgot-password" style="color:#0ec254; font-size: 13px; letter-spacing: .25px;" > Esqueceu a senha? </a></span>
+      </form>
+      </div>
+
+    </ion-slide>
+
+    <ion-slide>
+      <div class="slide-inner ion-padding">
+        <span><b>Cadastro</b></span>
+        <form [formGroup]="fGroup">
+        <ion-item class="ion-margin-top" lines="none">
+            <ion-input type="name" placeholder="Nome" formControlName="name" ></ion-input>
+          </ion-item>
+          <div  *ngIf="fGroup.controls.name.errors">
+            <small style="color:gray" *ngIf="fGroup.controls.name.errors.required && !fGroup.controls.name.pristine">Nome é obrigario!</small>
+            <small style="color:gray" *ngIf="fGroup.controls.name.errors.minlength && !fGroup.controls.name.pristine">Nome deve ter no mínimo 5 caracteres!</small>
+          </div>
+        <ion-item class="ion-margin-top" lines="none">
+          <ion-input type="email" placeholder="E-mail"  formControlName="email"></ion-input>
+        </ion-item>
+        <div  *ngIf="fGroup.controls.email.errors">
+          <small style="color:gray" *ngIf="fGroup.controls.email.errors.required && !fGroup.controls.email.pristine">E-mail é obrigatório!</small>
+          <small style="color:gray" *ngIf="fGroup.controls.email.errors.pattern && !fGroup.controls.email.pristine">E-mail ínvalido!</small>
+        </div>
+
+        <ion-item class="ion-margin-top" lines="none">
+          <ion-input type="password" placeholder="Senha"  formControlName="password"> </ion-input>
+        </ion-item>
+        <div  *ngIf="fGroup.controls.password.errors">
+          <small style="color:gray" *ngIf="fGroup.controls.password.errors.required  && !fGroup.controls.password.pristine ">Senha é obrigatório!</small>
+          <small style="color:gray" *ngIf="fGroup.controls.password.errors.minlength && !fGroup.controls.password.pristine">Senha deve ter no mínimo 4 caracteres!</small>
+        </div>
+      </form>
+        <ion-button class="ion-margin-top" (click)="register()" [disabled]="!fGroup.valid" color="success" expand="block">
+          Cadastrar
+        </ion-button>
+      </div>
+    
+    </ion-slide>
+  </ion-slides>
+  
+</ion-content>

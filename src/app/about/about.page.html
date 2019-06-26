@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-toolbar>
+
+    <ion-buttons routerLink="/login"  slot="start">
+      <ion-tab-button expand="block" routerLink="/" routerDirection="login" >
+        <ion-icon size="large" name="ios-arrow-round-back"></ion-icon>
+        
+      </ion-tab-button>
+    </ion-buttons>
+    <div>
+    <ion-title>
+      <div style="margin-left:2em;"> <img style="width: 110px;" src="../assets/title.png"></div>
+    </ion-title>
+  </div>
+  </ion-toolbar>
+</ion-header>
+<ion-content class=" background" >
+  <ion-card style="background-color: white;" class="welcome-card">
+   
+    <ion-card-header>
+      <ion-card-subtitle (click)="logout()" >Sair</ion-card-subtitle>
+    </ion-card-header>
+
+  </ion-card>
+</ion-content>

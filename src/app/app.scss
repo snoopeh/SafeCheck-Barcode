@@ -1,0 +1,26 @@
+// App Styles
+// ----------------------------------------------------------------------------
+// Put style rules here that you want to apply to the entire application. These 
+// styles are for the entire app and not just one component. Additionally, this 
+// file can hold Sass mixins, functions, and placeholder classes to be imported 
+// and used throughout the application.
+
+:root {
+    --ion-color-success: #0ec254;
+    --ion-color-success-rgb: 14,194,84;
+    --ion-color-success-contrast: #ffffff;
+    --ion-color-success-contrast-rgb: 255,255,255;
+    --ion-color-success-shade: #0cab4a;
+    --ion-color-success-tint: #26c865;
+  }
+
+.alink
+{
+    color: black; text-decoration: none; 
+}
+.pointer {cursor: pointer;}
+
+ion-content.background{
+  --background: url(../assets/bg.png) 0 0/100% 100% no-repeat;
+   background-color:  rgba(255, 255, 255, 0.9);
+}

@@ -1,0 +1,99 @@
+
+<ion-header>
+    <ion-toolbar>
+      <ion-title>
+            <div style="text-align:center;"> <img style="width: 110px;" src="../assets/title.png"></div>
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+<ion-content  class=" swiper-no-swiping background">
+  
+    <ion-searchbar  color="light" placeholder="Buscar" (ionInput)="searchItens($event)"></ion-searchbar>
+  <ion-list *ngIf="products != undefined || brands != undefined">
+    <ion-item  ion-item *ngFor="let item of products">
+      <a href="/tabs/detail/{{item._id}}/1">
+        <ion-thumbnail *ngIf="item.productImage != undefined" item-start>
+          <img  src="{{imageUrl}}/{{item.productImage}}">
+        </ion-thumbnail>
+      </a>
+      <a href="/tabs/detail/{{item._id}}/1">
+        <ion-thumbnail *ngIf="item.productImage == undefined" item-start>
+          <img src="../assets/imgnotav.png">
+        </ion-thumbnail>
+      </a>
+      <ion-label class="ion-margin">
+
+        <a class="alink" href="/tabs/detail/{{item._id}}/1">
+          <ion-text>
+            {{item.name}}
+          </ion-text>
+        </a>
+
+        <p>{{item.brand}}</p>
+        <ion-icon class="pointer" slot="icon-only" (click)="likeProduct(item._id)"  size="large" color="success" name="arrow-dropup">
+        </ion-icon>
+        
+        <ion-text class="pformat" style="margin-left:3px;">{{item.like.length}} </ion-text>
+        <ion-icon class="pointer" slot="icon-only" size="large" (click)="dislikeProduct(item._id)"  color="medium" name="arrow-dropdown"></ion-icon>
+        <ion-text  class="pformat" style=" margin-left:3px;">{{item.dislike.length}} </ion-text>
+        <br />
+       
+      </ion-label>
+
+      <div  class="ion-text-center" *ngIf="item.isVegan && item.isVeganVerify">
+        <img class="sizeImg" src="../assets/Vegan(2).png"><p class="pformat" style="margin-top:-8px;" >Vegan</p>
+        <img class="sizeImg" src="../assets/CF.png">  <p class="pformat" style="margin-top: -8px;">CrueltyFree</p>
+      </div>
+      <div class="ion-text-center"  *ngIf="item.isCrueltFree && !item.isVegan">
+        <img class="sizeImg" src="../assets/CF.png">  <p class="pformat" style="margin-top: -8px;">CrueltyFree</p>
+      </div>
+    </ion-item>
+
+    <!-- BRAND -->
+    <ion-item   ion-item *ngFor="let item of brands">
+
+      <a href="/tabs/detail/{{item._id}}/2">
+        <ion-thumbnail *ngIf="item.brandImage != undefined" item-start>
+          <img src="{{imageUrl}}/{{item.brandImage}}">
+        </ion-thumbnail>
+      </a>
+
+      <a href="/tabs/detail/{{item._id}}/2">
+        <ion-thumbnail *ngIf="item.brandImage == undefined" item-start>
+          <img src="../assets/imgnotav.png">
+        </ion-thumbnail>
+      </a>
+
+      <ion-label class="ion-margin">
+        <a class="alink" href="/tabs/detail/{{item._id}}/2">
+          <ion-text>
+            {{item.name}}
+          </ion-text>
+        </a>
+        <p></p>
+        <ion-icon class="pointer" slot="icon-only" (click)="likeBrand(item._id);" size="large" color="success" name="arrow-dropup">
+        </ion-icon>
+
+        <ion-text class="pformat" style="margin-left:3px;">{{item.like.length}} </ion-text>
+        <ion-icon class="pointer" slot="icon-only" (click)="dislikeBrand(item._id)"  size="large" color="medium" name="arrow-dropdown">
+        </ion-icon>
+        <ion-text class="pformat" style="margin-left:3px;">{{item.dislike.length}} </ion-text>
+        
+      </ion-label>
+      <div class="ion-text-center"  *ngIf="item.isVegan">
+        <img class="sizeImg" src="../assets/Vegan(2).png"><p class="pformat" style="margin-top:-8px;" >Vegan</p>
+        <img class="sizeImg" src="../assets/CF.png">  <p class="pformat" style="margin-top: -8px;">CrueltyFree</p>
+      </div>
+      <div class="ion-text-center"  *ngIf="item.isCrueltyFree && !item.isVegan">
+        <img class="sizeImg" src="../assets/CF.png">  <p class="pformat" style="margin-top: -8px;">CrueltyFree</p>
+      </div>
+
+    </ion-item>
+  </ion-list>
+  <ion-card-content routerLink="/tabs/new-product" routerDirection="new-product"  style="background-color: white; color: black;" *ngIf="brands == undefined && products == undefined && searched == true">
+  <div style="width:90%;  font-style: italic;" >
+    Ops! o produto nao foi encontrado, mas não se preocupe Guardamos a busca feita e em breve estaremos adicionando na nossa base de dados.
+    Caso queira agilizar esse processo para cadastra-lo clique aqui.  
+  </div>
+</ion-card-content>
+</ion-content>

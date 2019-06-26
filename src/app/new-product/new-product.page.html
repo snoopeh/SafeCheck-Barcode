@@ -1,0 +1,103 @@
+<ion-header>
+  <ion-toolbar>
+
+    <ion-buttons slot="start">
+      <ion-tab-button tab="search">
+        <ion-icon size="large" name="ios-arrow-round-back"></ion-icon>
+        
+      </ion-tab-button>
+    </ion-buttons>
+    <div>
+    <ion-title>
+      <div style="margin-left:2em;"> <img style="width: 110px;" src="../assets/title.png"></div>
+    </ion-title>
+  </div>
+  </ion-toolbar>
+</ion-header> 
+
+<ion-content class=" swiper-no-swiping background">
+  <div class="container top" [hidden]="keyboard.isVisible">
+    <div  style="text-align: center;" > <img style="width: 80px; margin-left:px;" src="/assets/Vegan(2).png"></div> 
+
+    <div class="bgclear">
+    <ion-segment (ionChange)="segmentChanged($event)" color="success" mode="ios" value="product">
+      <ion-segment-button  mode="ios" value="product">
+        <ion-label><b>Novo Produto</b></ion-label>
+      </ion-segment-button>
+      <ion-segment-button mode="ios" value="brand">
+        <ion-label><b>Nova Marca</b></ion-label>
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+  </div>
+
+  <ion-slides>
+    <ion-slide>
+      <div style="margin-top: -5%;" class="slide-inner ion-padding">
+        <span><b>Novo Produto</b></span>
+
+        <form [formGroup]="fGroupProduct">
+        <ion-item class="ion-margin-top" lines="none">
+            <ion-input type="name" placeholder="Nome" formControlName="name" ></ion-input>
+          </ion-item>
+          <div  *ngIf="fGroupProduct.controls.name.errors">
+            <small style="color:gray" *ngIf="fGroupProduct.controls.name.errors.required && !fGroupProduct.controls.name.pristine">Nome é obrigario!</small>
+            <small style="color:gray" *ngIf="fGroupProduct.controls.name.errors.minlength && !fGroupProduct.controls.name.pristine">Nome deve ter no mínimo 5 caracteres!</small>
+          </div>
+
+        <ion-item class="ion-margin-top" lines="none">
+          <ion-input type="brand" placeholder="Marca"[(ngModel)]="product.brand" [ngModelOptions]="{standalone: true}" ></ion-input>
+        </ion-item>
+
+        <ion-item class="ion-margin-top" lines="none">
+          <ion-input type="description" placeholder="Descrição"  [(ngModel)]="product.description" [ngModelOptions]="{standalone: true}"></ion-input>
+        </ion-item>
+
+        <ion-item class="ion-margin-top" lines="none">
+          <ion-input type="barcode" placeholder="Código de barras" [(ngModel)]="product.barcode"[ngModelOptions]="{standalone: true}" ></ion-input>
+        </ion-item>
+
+        <!-- <ion-fab right bottom>
+          <button ion-fab (click)="presentActionSheet()"><ion-icon name="camera"></ion-icon></button>
+        </ion-fab> -->
+        
+        <ion-button class="ion-margin-top" (click)="newProduct()" [disabled]="!fGroupProduct.valid"  color="success" expand="block">
+          Cadastrar
+        </ion-button>
+        </form>
+        <span style="color:#0ec254; font-size: 13px; letter-spacing: .25px;" > Nós da Safecheck iremos buscar informação sobre este produto. Em breve ele estará disponível. </span>
+      </div>
+    </ion-slide>
+
+    <ion-slide style="margin-top: -5%;">
+      <div class="slide-inner ion-padding">
+        <span>Marca</span>
+
+        <form [formGroup]="fGroupBrand">
+            <ion-item class="ion-margin-top" lines="none">
+                <ion-input type="name" placeholder="Nome" formControlName="name" ></ion-input>
+              </ion-item>
+              <div  *ngIf="fGroupBrand.controls.name.errors">
+                <small style="color:gray" *ngIf="fGroupBrand.controls.name.errors.required && !fGroupBrand.controls.name.pristine">Nome é obrigario!</small>
+                <small style="color:gray" *ngIf="fGroupBrand.controls.name.errors.minlength && !fGroupBrand.controls.name.pristine">Nome deve ter no mínimo 5 caracteres!</small>
+              </div>
+
+        <ion-item class="ion-margin-top" lines="none">
+          <ion-input type="description" placeholder="Descrição" [(ngModel)]="brand.description" [ngModelOptions]="{standalone: true} "></ion-input>
+        </ion-item>
+
+        <ion-item class="ion-margin-top" lines="none">
+          <ion-input type="link" placeholder="Site" [(ngModel)]="brand.link" [ngModelOptions]="{standalone: true}"></ion-input>
+        </ion-item>
+
+        <ion-button class="ion-margin-top" (click)="newBrand()" color="success"  [disabled]="!fGroupBrand.valid" expand="block">
+          Cadastrar
+        </ion-button>
+        </form>
+        <span style="color:#0ec254; font-size: 13px; letter-spacing: .25px;" > Nós da Safecheck iremos buscar informação sobre essa marca. Em breve ela estará disponível. </span>
+      </div>
+    
+    </ion-slide>
+  </ion-slides>
+  
+</ion-content>
